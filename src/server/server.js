@@ -97,4 +97,10 @@ app.post('/api/openai/validate', async (req, res) => {
       error: 'Invalid API key'
     });
   }
+});
+
+// Start the server
+httpServer.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+  console.log(`Socket.IO server listening on port ${PORT}`);
 }); 

@@ -6,12 +6,12 @@
   "scripts": {
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
     "dev:client": "vite",
-    "dev:server": "tsc && node dist/server/server.js",
-    "build": "npm install && tsc && vite build",
+    "dev:server": "NODE_OPTIONS=--max-old-space-size=1024 node src/server/server.js",
+    "build": "tsc && vite build",
     "build:dev": "npm install && tsc && vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start": "tsc && node dist/server/server.js"
+    "start": "NODE_OPTIONS=--max-old-space-size=1024 tsc && node dist/server/server.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
