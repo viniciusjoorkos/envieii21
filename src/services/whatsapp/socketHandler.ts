@@ -87,25 +87,26 @@ export const initializeSocket = () => {
       }, 1000 * reconnectAttempts);
     });
 
-    socket.on('disconnect', (reason) => {
-      console.log('Socket disconnected:', {
-        reason,
-        transport: socket?.io.engine.transport.name,
-        timestamp: new Date().toISOString()
-      });
-
+    socket.on('disconnect', (reason: string) => {
+      console.warn('Desconectado por:', reason);
       if (reason === 'io server disconnect') {
         console.log('Server initiated disconnect, attempting to reconnect...');
         socket?.connect();
       }
     });
 
-    socket.on('error', (error) => {
-      console.error('Socket error:', {
-        error: error.message,
-        transport: socket?.io.engine.transport.name,
-        timestamp: new Date().toISOString()
-      });
+    socket.on('error', (error: unknown) => {
+      if (error instanceof Error) {
+        console.error('Erro no socket:', error.message);
+      } else {
+        console.error('Erro desconhecido no socket:', error);
+      }
+    });
+
+    socket.on('qr', (qrCode: string) => {
+      console.log('QR Code recebido:', qrCode);
+      // Assuming this.qrCode is a property of the class
+      // this.qrCode = qrCode;
     });
 
     setupSocketListeners();
@@ -158,25 +159,20 @@ const setupSocketListeners = () => {
     }, 1000 * reconnectAttempts);
   });
 
-  socket.on('disconnect', (reason) => {
-    console.log('Socket disconnected:', {
-      reason,
-      transport: socket?.io.engine.transport.name,
-      timestamp: new Date().toISOString()
-    });
-
+  socket.on('disconnect', (reason: string) => {
+    console.warn('Desconectado por:', reason);
     if (reason === 'io server disconnect') {
       console.log('Server initiated disconnect, attempting to reconnect...');
       socket?.connect();
     }
   });
 
-  socket.on('error', (error) => {
-    console.error('Socket error:', {
-      error: error.message,
-      transport: socket?.io.engine.transport.name,
-      timestamp: new Date().toISOString()
-    });
+  socket.on('error', (error: unknown) => {
+    if (error instanceof Error) {
+      console.error('Erro no socket:', error.message);
+    } else {
+      console.error('Erro desconhecido no socket:', error);
+    }
   });
 };
 

@@ -177,7 +177,7 @@ class WhatsAppService extends EventTarget {
     });
 
     this.socket.on('qr', (qrCode) => {
-      console.log('QR Code received');
+      console.log('QR Code recebido:', typeof qrCode === 'string' ? qrCode : 'QR Code inválido');
       this.qrCode = qrCode;
     });
   }
