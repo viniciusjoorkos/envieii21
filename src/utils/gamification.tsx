@@ -1,4 +1,5 @@
 import { toast } from "@/hooks/use-toast";
+import { ToastAction } from "@/components/ui/toast";
 
 // Define point thresholds for levels
 export const LEVEL_THRESHOLDS = {
@@ -50,10 +51,7 @@ export const awardPoints = (points: number, reason: string): void => {
     title: `+${points} pontos!`,
     description: `Você ganhou pontos por: ${reason}`,
     className: "bg-indigo-900/80 border-indigo-400 text-indigo-50 relative overflow-hidden",
-    action: {
-      label: "Fechar",
-      onClick: () => {}
-    }
+    action: <ToastAction altText="Fechar">Fechar</ToastAction>
   });
   
   // If user leveled up, play sound and show toast
@@ -70,4 +68,4 @@ export const awardPoints = (points: number, reason: string): void => {
 // Mock function to get current user's points - in a real app this would come from backend
 export const getUserPoints = (): number => {
   return parseInt(localStorage.getItem('userPoints') || '0', 10);
-};
+}; 

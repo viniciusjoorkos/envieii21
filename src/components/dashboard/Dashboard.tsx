@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Home, MessageSquare, Settings, Link, MessageCircle, Trophy } from 'lucide-react';
-import SUP from './SUP';
+import { SUP } from '@/components/SUP';
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
