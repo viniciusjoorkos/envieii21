@@ -12,12 +12,17 @@ const fetch = require('node-fetch');
 const app = express();
 const httpServer = createServer(app);
 
+// Serve static files from the dist directory
+app.use(express.static(path.join(__dirname, '../../dist')));
+
 // CORS configuration
 const allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:3001",
   "https://envieii-nuancielo.vercel.app", // Add your Vercel domain
-  "https://*.vercel.app" // Allow all Vercel subdomains
+  "https://*.vercel.app", // Allow all Vercel subdomains
+  "https://fog-sedate-arthropod.glitch.me",
+  "https://*.glitch.me"
 ];
 
 app.use(cors({
@@ -322,6 +327,11 @@ app.use((err, req, res, next) => {
     timestamp,
     message: err.message || err
   });
+});
+
+// Serve the index.html for all routes
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../../dist/index.html'));
 });
 
 // Start server
