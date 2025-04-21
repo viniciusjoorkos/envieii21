@@ -19,10 +19,10 @@ app.use(express.static(path.join(__dirname, '../../dist')));
 const allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:3001",
-  "https://envieii-nuancielo.vercel.app", // Add your Vercel domain
-  "https://*.vercel.app", // Allow all Vercel subdomains
-  "https://fog-sedate-arthropod.glitch.me",
-  "https://*.glitch.me"
+  "https://envieii21.onrender.com",
+  "https://envieii21-ag2wsesm2-vinicius-benis-projects.vercel.app",
+  "https://*.vercel.app",
+  "https://*.onrender.com"
 ];
 
 app.use(cors({
@@ -119,7 +119,15 @@ const io = new Server(httpServer, {
   allowUpgrades: true,
   perMessageDeflate: true,
   maxHttpBufferSize: 1e8,
-  connectTimeout: 45000
+  connectTimeout: 45000,
+  
+  // Additional settings for Render
+  cookie: {
+    name: 'io',
+    path: '/',
+    httpOnly: true,
+    sameSite: 'lax'
+  }
 });
 
 // Adicionando tratamento de erros de conexão

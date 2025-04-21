@@ -18,7 +18,7 @@ export const initializeSocket = () => {
     return;
   }
 
-  const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'https://fog-sedate-arthropod.glitch.me/';
+  const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'https://envieii21.onrender.com';
   console.log('Initializing socket connection to:', SOCKET_URL);
 
   try {

@@ -3,8 +3,8 @@ const config = {
   // Socket.IO server URL
   socketUrl: import.meta.env.VITE_SOCKET_URL || 
     (import.meta.env.PROD 
-      ? 'https://fog-sedate-arthropod.glitch.me/' 
-      : 'https://fog-sedate-arthropod.glitch.me/'),
+      ? 'https://envieii21.onrender.com' 
+      : 'http://localhost:3002'),
   
   // Environment detection
   isDevelopment: import.meta.env.DEV,
