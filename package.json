@@ -6,12 +6,12 @@
   "scripts": {
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
     "dev:client": "vite",
-    "dev:server": "node src/server/server.js",
+    "dev:server": "node src/server/server.mjs",
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start": "node src/server/server.js"
+    "start": "node src/server/server.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",

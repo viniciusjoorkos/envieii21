@@ -1,5 +1,4 @@
 import { toast } from "@/hooks/use-toast";
-import WhatsAppQRCodeWrapper from "@/components/WhatsAppQRCodeWrapper";
 
 interface OpenAIStatus {
   isConnected: boolean;
@@ -10,22 +9,21 @@ class OpenAIService {
   private apiKey: string | null = null;
   private isConnected: boolean = false;
   
-  // Validate OpenAI API key by making a simple request
   public async validateApiKey(key: string): Promise<boolean> {
-    // In a real app, you'd make a simple request to OpenAI API
-    // For demo purposes, we'll simulate validation with a timeout
     try {
-      // Simulate API call
-      await new Promise<void>(resolve => setTimeout(resolve, 1500));
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/openai/validate`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ apiKey: key })
+      });
+
+      const data = await response.json();
       
-      // For demo, we'll just validate that it starts with "sk-"
-      const isValid = key.startsWith('sk-');
-      
-      if (isValid) {
+      if (data.isValid) {
         this.apiKey = key;
         this.isConnected = true;
-        
-        // Save to localStorage for persistence
         localStorage.setItem('openai_api_key', key);
         
         toast({
@@ -41,7 +39,7 @@ class OpenAIService {
         });
       }
       
-      return isValid;
+      return data.isValid;
     } catch (error) {
       console.error('Error validating OpenAI API key:', error);
       this.isConnected = false;
@@ -68,7 +66,6 @@ class OpenAIService {
   }
   
   public initialize() {
-    // Load API key from localStorage if available
     const savedKey = localStorage.getItem('openai_api_key');
     if (savedKey) {
       this.apiKey = savedKey;

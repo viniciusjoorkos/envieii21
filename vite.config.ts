@@ -37,6 +37,11 @@ export default defineConfig(({ mode }) => {
             'Access-Control-Allow-Credentials': 'true'
           }
         },
+        '/api': {
+          target: process.env.BACKEND_URL || 'http://localhost:3002',
+          changeOrigin: true,
+          secure: false,
+        }
       },
     },
     plugins: [
@@ -55,7 +60,8 @@ export default defineConfig(({ mode }) => {
         VITE_ENABLE_WEBSOCKET: env.VITE_ENABLE_WEBSOCKET === 'true',
         VITE_ENABLE_POLLING: env.VITE_ENABLE_POLLING === 'true',
         VITE_ENABLE_COMPRESSION: env.VITE_ENABLE_COMPRESSION === 'true',
-      }
+      },
+      'process.env.BACKEND_URL': JSON.stringify(process.env.BACKEND_URL)
     },
   };
 });
