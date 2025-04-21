@@ -80,7 +80,7 @@ class WhatsAppService extends EventTarget {
 
       this.socket = io(config.socketUrl, {
         // Transport configuration
-        transports: ['websocket', 'polling'],
+        transports: ['websocket'],
         
         // Timeout settings
         timeout: 30000,
@@ -108,13 +108,9 @@ class WhatsAppService extends EventTarget {
         
         // Security settings
         withCredentials: true,
-        
-        // Debug settings
-        debug: process.env.NODE_ENV === 'development'
       });
 
       this.setupSocketListeners();
-      
     } catch (error) {
       console.error('Error initializing socket:', error);
       this.handleConnectionError(error);

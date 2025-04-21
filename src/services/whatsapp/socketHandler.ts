@@ -18,7 +18,7 @@ export const initializeSocket = () => {
     return;
   }
 
-  const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:3002';
+  const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'https://fog-sedate-arthropod.glitch.me/';
   console.log('Initializing socket connection to:', SOCKET_URL);
 
   try {
@@ -27,7 +27,7 @@ export const initializeSocket = () => {
     localStorage.setItem('envieiiToken', token);
 
     socket = io(SOCKET_URL, {
-      transports: ['websocket', 'polling'],
+      transports: ['websocket'],
       reconnection: true,
       reconnectionAttempts: 10,
       reconnectionDelay: 2000,

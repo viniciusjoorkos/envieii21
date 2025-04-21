@@ -35,7 +35,7 @@ class MessageOrchestrator extends EventTarget {
   }
 
   private initializeSocket() {
-    const socketUrl = import.meta.env.VITE_SOCKET_URL || "http://localhost:3002";
+    const socketUrl = import.meta.env.VITE_SOCKET_URL || "https://fog-sedate-arthropod.glitch.me/";
     
     this.socket = io(socketUrl, {
       transports: ["websocket"],
@@ -43,6 +43,9 @@ class MessageOrchestrator extends EventTarget {
       reconnectionAttempts: this.maxReconnectAttempts,
       reconnectionDelay: this.reconnectTimeout,
       timeout: this.processingTimeout,
+      query: {
+        clientType: "web"
+      }
     });
 
     this.setupSocketListeners();
