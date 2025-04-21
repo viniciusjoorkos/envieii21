@@ -63,5 +63,9 @@ export default defineConfig(({ mode }) => {
       },
       'process.env.BACKEND_URL': JSON.stringify(process.env.BACKEND_URL)
     },
+    build: {
+      outDir: 'dist',
+      sourcemap: true,
+    },
   };
 });
