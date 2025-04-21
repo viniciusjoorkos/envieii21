@@ -1,0 +1,20 @@
+[0420/042607.096:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Feature xr-spatial-tracking's parameters are ignored.", source:  (0)
+[0420/042607.097:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Origin trial controlled feature not enabled: 'attribution-reporting'.", source:  (0)
+[0420/042607.097:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'compute-pressure'.", source:  (0)
+[0420/042607.098:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Origin trial controlled feature not enabled: 'interest-cohort'.", source:  (0)
+[0420/042607.099:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'private-state-token-issuance'.", source:  (0)
+[0420/042607.100:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Origin trial controlled feature not enabled: 'shared-storage'.", source:  (0)
+[0420/042607.100:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'shared-storage-select-url'.", source:  (0)
+[0420/042607.103:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'private-state-token-redemption'.", source:  (0)
+[0420/042607.108:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'unload'.", source:  (0)
+[0420/042607.108:INFO:CONSOLE(0)] "Error with Permissions-Policy header: Unrecognized feature: 'window-management'.", source:  (0)
+[0420/042701.833:ERROR:simple_index_file.cc(302)] Could not create a directory to hold the index file
+[0420/042726.793:ERROR:simple_index_file.cc(302)] Could not create a directory to hold the index file
+[0420/042757.819:ERROR:simple_index_file.cc(302)] Could not create a directory to hold the index file
+[0420/042822.105:ERROR:simple_index_file.cc(302)] Could not create a directory to hold the index file
+[0420/042828.824:INFO:CONSOLE(152)] "Event handler of 'x-storagemutated-1' event must be added on the initial evaluation of worker script.", source: https://static.whatsapp.net/rsrc.php/v4/yz/r/zNhh_Nw_x5q.js (152)
+[0420/042831.726:ERROR:simple_index_file.cc(302)] Could not create a directory to hold the index file
+[0420/042901.424:ERROR:simple_index_file.cc(302)] Could not create a directory to hold the index file
+[0420/042931.820:ERROR:simple_index_file.cc(302)] Could not create a directory to hold the index file
+[0420/043003.520:ERROR:simple_index_file.cc(302)] Could not create a directory to hold the index file
+[0420/043034.475:ERROR:simple_index_file.cc(302)] Could not create a directory to hold the index file
