@@ -33,6 +33,11 @@ app.use(bodyParser.json());
 // Serve static files from the dist directory
 app.use(express.static(path.join(__dirname, '../../dist')));
 
+// Handle client-side routing
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../dist/index.html'));
+});
+
 // CORS configuration
 const allowedOrigins = [
   "http://localhost:3000",
@@ -96,4 +101,6 @@ app.post('/api/openai/validate', async (req: Request, res: Response) => {
 // Start server
 httpServer.listen(PORT, () => {
   console.log(`Server running in ${NODE_ENV} mode on port ${PORT}`);
+  console.log(`Socket.IO server listening on port ${PORT}`);
+  console.log(`Static files served from ${path.join(__dirname, '../../dist')}`);
 }); 

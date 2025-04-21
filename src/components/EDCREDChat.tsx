@@ -91,18 +91,17 @@ const EDCREDChat = () => {
         console.error('Invalid response format:', data);
         throw new Error('Invalid response format from OpenAI');
       }
-    } catch (error) {
-      console.error('Error in handleSend:', {
-        message: error.message,
-        stack: error.stack,
-        error: error
-      });
-      // Add error message to chat
-      const errorMessage: Message = {
-        role: 'assistant',
-        content: `Error: ${error.message}. Please try again.`
-      };
-      setMessages(prev => [...prev, errorMessage]);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error('Error in EDCRED chat:', error.message);
+        console.error('Stack trace:', error.stack);
+        // Add error message to chat
+        const errorMessage: Message = {
+          role: 'assistant',
+          content: `Error: ${error.message}. Please try again.`
+        };
+        setMessages(prev => [...prev, errorMessage]);
+      }
     } finally {
       setIsLoading(false);
     }

@@ -26,6 +26,15 @@ import { getUserPoints, getUserLevel } from '@/utils/gamification';
 import { Input } from '@/components/ui/input';
 import EDCREDChat from '@/components/EDCREDChat';
 
+interface Challenge {
+  id: number;
+  title: string;
+  progress?: number;
+  total?: number;
+  points: number;
+  completed?: boolean;
+}
+
 const Dashboard = () => {
   const [userName, setUserName] = useState('');
   const [mockConversations, setMockConversations] = useState<{id: string, name: string, lastMessage: string, tags: TagType[]}[]>([
@@ -322,6 +331,26 @@ const Dashboard = () => {
   const handleSupportSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle form submission
+  };
+
+  const renderChallengeProgress = (challenge: { progress?: number; total?: number }) => {
+    if (challenge.progress !== undefined && challenge.total !== undefined && challenge.total > 0) {
+      const percentage = Math.round((challenge.progress / challenge.total) * 100);
+      const width = (challenge.progress / challenge.total) * 100;
+
+      return (
+        <div className="flex items-center gap-2">
+          <span className="text-sm font-medium">{percentage}%</span>
+          <div className="h-2 w-full rounded-full bg-gray-200">
+            <div 
+              className="h-full rounded-full bg-blue-600" 
+              style={{ width: `${width}%` }}
+            />
+          </div>
+        </div>
+      );
+    }
+    return null;
   };
 
   return (
@@ -773,13 +802,13 @@ const Dashboard = () => {
                           ) : (
                             <div className="space-y-2">
                               <div className="flex justify-between text-sm text-foreground/70">
-                                <span>Progresso: {challenge.progress}/{challenge.total}</span>
-                                <span>{Math.round((challenge.progress / challenge.total) * 100)}%</span>
+                                <span>Progresso: {challenge.progress || 0}/{challenge.total || 0}</span>
+                                {renderChallengeProgress(challenge)}
                               </div>
                               <div className="w-full h-2 bg-dark-bg rounded-full overflow-hidden">
                                 <div 
                                   className="h-full bg-indigo-500 rounded-full relative overflow-hidden"
-                                  style={{ width: `${(challenge.progress / challenge.total) * 100}%` }}
+                                  style={{ width: `${((challenge.progress || 0) / (challenge.total || 1)) * 100}%` }}
                                 >
                                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-indigo-400/40 to-transparent animate-flow"></div>
                                 </div>

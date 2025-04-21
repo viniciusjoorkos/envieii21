@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: envieii21
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3002
+      - key: VITE_SOCKET_URL
+        value: https://envieii21.onrender.com
+      - key: VITE_APP_URL
+        value: https://envieii21.onrender.com
+      - key: VITE_API_URL
+        value: https://envieii21.onrender.com
+      - key: CORS_ORIGIN
+        value: https://envieii21.onrender.com
+      - key: VITE_BACKEND_URL
+        value: https://envieii21.onrender.com 

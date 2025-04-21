@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Tag, AlertCircle, ShoppingCart, HelpCircle, Star, Plus } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
@@ -69,7 +68,12 @@ const SmartTags: React.FC<SmartTagsProps> = ({
     for (const [tag, keywords] of Object.entries(patterns)) {
       for (const keyword of keywords) {
         if (lowerContent.includes(keyword) && !tags.includes(tag as TagType)) {
-          onAddTag(tag as TagType);
+          if (onAddTag && typeof onAddTag === 'function') {
+            const typedTag = tag as TagType;
+            if (typedTag !== null) {
+              onAddTag(typedTag);
+            }
+          }
           return; // Adiciona apenas a tag mais relevante por mensagem
         }
       }
@@ -121,14 +125,17 @@ const SmartTags: React.FC<SmartTagsProps> = ({
     }
   };
 
-  const handleAddTag = (tag: TagType) => {
-    if (onAddTag) {
-      onAddTag(tag);
-      toast({
-        title: "Etiqueta adicionada",
-        description: `A etiqueta "${getTagText(tag)}" foi adicionada com sucesso.`,
-        className: "bg-blue-900/80 border-blue-400 text-blue-50",
-      });
+  const handleAddTag = (tag: string) => {
+    if (onAddTag && typeof onAddTag === 'function' && tag) {
+      const typedTag = tag as TagType;
+      if (typedTag !== null) {
+        onAddTag(typedTag);
+        toast({
+          title: "Etiqueta adicionada",
+          description: `A etiqueta "${getTagText(typedTag)}" foi adicionada com sucesso.`,
+          className: "bg-blue-900/80 border-blue-400 text-blue-50"
+        });
+      }
     }
     setIsOpen(false);
   };
@@ -204,7 +211,11 @@ const SmartTags: React.FC<SmartTagsProps> = ({
               .map((tag) => (
                 <DropdownMenuItem 
                   key={tag} 
-                  onClick={() => handleAddTag(tag)}
+                  onClick={() => {
+                    if (tag) {
+                      handleAddTag(tag);
+                    }
+                  }}
                   className="flex items-center gap-2 hover:bg-blue-900/20 cursor-pointer"
                 >
                   {getTagIcon(tag)}
