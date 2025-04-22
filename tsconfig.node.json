@@ -5,7 +5,18 @@
     "moduleResolution": "Node",
     "emitDeclarationOnly": true,
     "outDir": "./dist",
-    "types": ["node"]
+    "types": ["node"],
+    "allowJs": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true
   },
-  "include": ["vite.config.ts"]
+  "include": [
+    "vite.config.ts",
+    "src/server/**/*.ts",
+    "src/server/**/*.js",
+    "src/services/**/*.ts",
+    "src/middleware/**/*.ts"
+  ]
 }
